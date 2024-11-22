@@ -1,13 +1,16 @@
 import store from "./redex/store.js";
-import getCurrentTime from "./utils/getCurrentTime.js";
+import { addCurrentTime, clearTimes } from "./redex/actionCreators.js";
 
 
 const addTimeBtn = document.getElementById("addTime");
 addTimeBtn.addEventListener("click", ()=> {
-  store.dispatch({
-    type: "ADD_CURRENT_TIME",
-    payload: getCurrentTime()
-  })
+  store.dispatch(addCurrentTime())
+})
+
+
+const clearTimeBtn = document.getElementById("clearTimes");
+clearTimeBtn.addEventListener("click", ()=> {
+  store.dispatch(clearTimes())
 })
 
 const timesList = document.getElementById("timesList");
@@ -21,6 +24,7 @@ store.subscribe(() => {
     timesList.appendChild(li)
   })
 })
+
 
 
 
